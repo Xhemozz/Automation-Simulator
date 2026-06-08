@@ -1,37 +1,43 @@
 using Unity.Mathematics;
+using Unity.VisualScripting;
+using UnityEditor.AssetImporters;
 using UnityEngine;
 
 public class Cassette : MonoBehaviour
 {
-    public DrugDatabase database;
-    public DrugGameObjectCreator creator;
+    [Header("Dependencies")]
+    [SerializeField]private DrugRepositoryManager repository;
+    [SerializeField]private DrugSpawner spawner;
+    [SerializeField]private Transform spawnpoint;
+    
+    [Header("Configs")]
+    [SerializeField] private int cassetteIndex = 0;
+    [SerializeField] private int maximumCapacity = 30;
 
-    public int cassetteID = 0;
-    public int maximumCapacity = 5;
+    private bool isLoaded = false;
 
-    public Transform spawnPoint;
-
-    private bool isEmpty = true;
-    private GameObject obj;
-    private void Update()
+    public void Load()
     {
-        if (database.drugList != null && database.drugList.Count > 0)
+        if (isLoaded) return;
+
+        Drug drug = repository.Repository.GetDrugByIndex(cassetteIndex);
+
+        if(drug == null)
         {
-            if (isEmpty)
-            {
-                var temp = database.GetDrugByIndex(cassetteID);
-                obj = creator.CreateDrugObject(temp, spawnPoint);
-                LoadDrugIntoCassette(obj);
-                isEmpty = false;
-            }
+            Debug.LogWarning("Cassette: No drug found at index " + cassetteIndex);
+            return;
         }
+
+        SpawnDrugs(drug);
+
+        isLoaded = true;
     }
 
-    private void LoadDrugIntoCassette(GameObject clone)
+    private void SpawnDrugs(Drug drug)
     {
-        for (int i = 0; i < maximumCapacity; i++)
+        for(int i = 0; i < maximumCapacity; i++)
         {
-            Instantiate(clone, spawnPoint.position, quaternion.identity);
+            spawner.SpawnDrug(drug, spawnpoint);
         }
     }
 }

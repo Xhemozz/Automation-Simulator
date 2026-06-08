@@ -3,7 +3,7 @@ using UnityEngine;
 public class DrugComponent : MonoBehaviour
 {
     public Drug drugData;
-    public void SetData(Drug data)
+    public void Init(Drug data)
     {
         drugData = data;
     }

@@ -3,26 +3,25 @@ using UnityEngine;
 
 public class InputFieldManager : MonoBehaviour
 {
-    public TMP_InputField nameInput;
-    public TMP_InputField strengthInput;
-    public TMP_InputField ndcInput;
+    [SerializeField] private TMP_InputField nameInput;
+    [SerializeField] private TMP_InputField strengthInput;
+    [SerializeField] private TMP_InputField ndcInput;
 
-    public string drugName;
-    public int drugStrength;
-    public double drugNDC;
+    [SerializeField] private DrugRepositoryManager repositoryManager;
+    [SerializeField] private DrugCreator creator;
 
-    public void ReadDrugName()
+    private DrugService drugService;
+
+    private void Awake()
     {
-        drugName = nameInput.text;
+        drugService = new DrugService(repositoryManager.Repository, creator);
     }
 
-    public void ReadDrugStrength()
+    public void OnSubmit()
     {
-        drugStrength = int.Parse(strengthInput.text);
-    }
+        bool success = drugService.CreateDrug(nameInput.text, strengthInput.text, ndcInput.text);
 
-    public void ReadDrugNDC()
-    {
-        drugNDC = double.Parse(ndcInput.text);
+        if (!success) Debug.LogWarning("Invalid Input");
+        else Debug.Log("Drug created successfully");
     }
 }

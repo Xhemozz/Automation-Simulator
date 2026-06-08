@@ -3,11 +3,11 @@
 public class Drug
 {
     public string Name;
-    public int Strength;
-    public double NDC;
+    public float Strength;
+    public string NDC;
     public bool IsActive;
 
-    public Drug(string name, int strength, double ndc)
+    public Drug(string name, float strength, string ndc)
     {
         Name = name;
         Strength = strength;
