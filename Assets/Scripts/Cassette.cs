@@ -1,6 +1,3 @@
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor.AssetImporters;
 using UnityEngine;
 
 public class Cassette : MonoBehaviour
@@ -20,6 +17,7 @@ public class Cassette : MonoBehaviour
     {
         if (isLoaded) return;
 
+        Debug.Log("Repo USED (Cassette): " + repository.Repository.GetHashCode());
         Drug drug = repository.Repository.GetDrugByIndex(cassetteIndex);
 
         if(drug == null)

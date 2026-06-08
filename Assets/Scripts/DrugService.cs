@@ -1,3 +1,4 @@
+using Unity.Properties;
 using UnityEngine;
 
 public class DrugService
@@ -10,9 +11,11 @@ public class DrugService
         this.repository = repository;
         this.creator = creator;
     }
-
+    
     public bool CreateDrug(string name, string strengthText, string ndc)
     {
+        if (creator == null) Debug.Log("creator borked");
+        if (repository == null) Debug.Log("borked");
         if (string.IsNullOrWhiteSpace(name)) return false;
         if (string.IsNullOrWhiteSpace(ndc)) return false;
         if (ndc.Length != 11) return false;

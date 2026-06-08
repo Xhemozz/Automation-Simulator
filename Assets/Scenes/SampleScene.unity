@@ -525,7 +525,7 @@ MonoBehaviour:
   nameInput: {fileID: 681139891}
   strengthInput: {fileID: 1852535710}
   ndcInput: {fileID: 1103368614}
-  repositoryManager: {fileID: 304918248}
+  repositoryManager: {fileID: 304918250}
   creator: {fileID: 184596915}
 --- !u!4 &105981464
 Transform:
@@ -996,7 +996,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 304918249}
-  - component: {fileID: 304918248}
+  - component: {fileID: 304918250}
   m_Layer: 0
   m_Name: RepositoryManager
   m_TagString: Untagged
@@ -1004,18 +1004,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &304918248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 304918247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db9fedb1b02c9364f9479d345a1ee7e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DrugRepositoryManager
 --- !u!4 &304918249
 Transform:
   m_ObjectHideFlags: 0
@@ -1031,6 +1019,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &304918250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304918247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9fedb1b02c9364f9479d345a1ee7e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DrugRepositoryManager
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,7 +1529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be7d7f24a6ae8a48818aed215db9aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cassette
-  repository: {fileID: 304918248}
+  repository: {fileID: 304918250}
   spawner: {fileID: 844541377}
   spawnpoint: {fileID: 1141572917}
   cassetteIndex: 0

@@ -14,6 +14,7 @@ public class InputFieldManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("Repo USED (UI): " + repositoryManager.Repository.GetHashCode());
         drugService = new DrugService(repositoryManager.Repository, creator);
     }
 
