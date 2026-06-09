@@ -12,8 +12,9 @@ public class InputFieldManager : MonoBehaviour
 
     private DrugService drugService;
 
-    private void Awake()
+    private void Start()
     {
+        if (repositoryManager.Repository == null) Debug.Log("Repo is Null");
         Debug.Log("Repo USED (UI): " + repositoryManager.Repository.GetHashCode());
         drugService = new DrugService(repositoryManager.Repository, creator);
     }
