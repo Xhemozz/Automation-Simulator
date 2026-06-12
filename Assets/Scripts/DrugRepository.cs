@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * Drug database that is responsible for storing and retrieving the drug
+ */
 public class DrugRepository
 {
     private readonly List<Drug> drugs = new();

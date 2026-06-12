@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class DrugSpawner : MonoBehaviour
 {
     private const string DrugPrefabPath = "Pill";

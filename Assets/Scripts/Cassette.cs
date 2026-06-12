@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/*
+ * Takes a drug from the database and uses it to fill a prescription
+ */
 public class Cassette : MonoBehaviour
 {
     [Header("Dependencies")]
