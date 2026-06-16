@@ -17,11 +17,12 @@ public class InputFieldManager : MonoBehaviour
     [SerializeField] private DrugRepositoryManager repositoryManager;
     [SerializeField] private DrugCreator creator;
 
-    [SerializeField] private PatientCreator patientCreator;
     [SerializeField] private PrescriptionManager scriptService;
 
     private DrugService drugService;
     private PrescriptionService prescriptionService;
+
+    private PrescriptionState currentState;
 
     private void Start()
     {
@@ -29,7 +30,7 @@ public class InputFieldManager : MonoBehaviour
         Debug.Log("Repo USED (UI): " + repositoryManager.Repository.GetHashCode());
         drugService = new DrugService(repositoryManager.Repository, creator);
 
-        prescriptionService = new PrescriptionService(scriptService.queue, patientCreator);
+        prescriptionService = new PrescriptionService(scriptService.queue);
     }
 
     public void OnSubmit()
@@ -40,9 +41,12 @@ public class InputFieldManager : MonoBehaviour
         else Debug.Log("Drug created successfully");
     }
 
-    public void SubmitPatient()
+    public void SubmitPrescription()
     {
-        bool success = prescriptionService.CreatePrescription(
+        if (currentState == PrescriptionState.Success)
+            prescriptionService.CreatePrescription(
             patientName.text, drugName.text, quantity.text);
+        else
+            Debug.Log("Prescription is invalid");
     }
 }

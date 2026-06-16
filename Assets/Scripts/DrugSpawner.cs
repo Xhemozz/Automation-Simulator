@@ -5,7 +5,7 @@ public class DrugSpawner : MonoBehaviour
 
     public GameObject SpawnDrug(Drug drug, Transform spawnPoint)
     {
-        GameObject prefab = Resources.Load<GameObject>("Pill");
+        GameObject prefab = Resources.Load<GameObject>(DrugPrefabPath);
 
         if (prefab == null)
         {

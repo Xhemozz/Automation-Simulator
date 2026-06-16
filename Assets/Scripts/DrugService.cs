@@ -7,14 +7,14 @@ public class DrugService
 
     public DrugService(DrugRepository repository, DrugCreator creator)
     {
-        this.repository = repository;
-        this.creator = creator;
+        this.repository = repository ??
+            throw new System.ArgumentNullException(nameof(repository));
+        this.creator = creator ??
+            throw new System.ArgumentNullException(nameof(creator));
     }
     
     public bool CreateDrug(string name, string strengthText, string ndc)
     {
-        if (creator == null) Debug.Log("creator borked");
-        if (repository == null) Debug.Log("repo borked");
         if (string.IsNullOrWhiteSpace(name)) return false;
         if (string.IsNullOrWhiteSpace(ndc)) return false;
         if (ndc.Length != 11) return false;
