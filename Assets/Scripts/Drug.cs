@@ -1,5 +1,6 @@
-
 [System.Serializable]
+
+// Data thats used to construct the Drug object
 public class Drug
 {
     public string Name;

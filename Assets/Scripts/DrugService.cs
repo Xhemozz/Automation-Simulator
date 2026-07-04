@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Service layer that crreates the medication
 public class DrugService
 {
     private readonly DrugRepository repository;

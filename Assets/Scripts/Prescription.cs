@@ -1,7 +1,4 @@
-using UnityEngine;
-/*
- * Has the patients name and drug
- */
+// Prescription Data Layer
 public class Prescription
 {
     public string patientName;

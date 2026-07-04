@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-/*
- * Drug database that is responsible for storing and retrieving the drug
- */
+// Holds all medication and retrives medications by name
 public class DrugRepository
 {
     private readonly Dictionary<string, Drug> drugs = new();

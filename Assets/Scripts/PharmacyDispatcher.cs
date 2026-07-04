@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Centralized Dispatcher that starts the simulation for filling prescriptions
 public class PharmacyDispatcher : MonoBehaviour
 {
     [SerializeField] private List<Cassette> cassettes;

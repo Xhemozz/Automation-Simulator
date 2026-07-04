@@ -1,7 +1,6 @@
 using UnityEngine;
-/*
- * Wrapper class for the Drug object to attach to a game object
- */
+
+// Wrapper class to attach to pill object in the scene
 public class DrugComponent : MonoBehaviour
 {
     public Drug drugData;

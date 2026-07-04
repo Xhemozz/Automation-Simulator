@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Singleton to initilize all services at start up
 public class GameBootstrapper : MonoBehaviour
 {
     public static GameBootstrapper Instance { get; private set; }
@@ -22,6 +23,7 @@ public class GameBootstrapper : MonoBehaviour
 
         Instance = this;
 
+        // Initilizes all services
         Repository = new DrugRepository();
         creator = new DrugCreator();
 

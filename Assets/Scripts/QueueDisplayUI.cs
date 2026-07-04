@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 
+// Shows the prescription queue to UI
 public class QueueDisplayUI : MonoBehaviour
 {
     [SerializeField] private PharmacyDispatcher dispatcher;

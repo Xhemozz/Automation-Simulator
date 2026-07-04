@@ -1,4 +1,4 @@
-
+// Prescription service layer that validates user input and returns a prescription
 public enum PrescriptionState
 {
     Success,

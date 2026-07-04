@@ -1,8 +1,6 @@
-using Unity.Mathematics;
 using UnityEngine;
-/*
- * Takes a drug from the database and uses it to fill a prescription
- */
+
+// Holds and dispenses mediication
 public class Cassette : MonoBehaviour
 {
     [SerializeField] private DrugSpawner spawner;

@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 
+// Manages user input through Input Fields
 public class InputFieldManager : MonoBehaviour
 {
     [Header("Drug UI")]

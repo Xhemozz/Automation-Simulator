@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Spawns medication in the scene
 public class DrugSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject drugPrefab;
