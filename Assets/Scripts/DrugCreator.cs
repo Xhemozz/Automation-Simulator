@@ -1,8 +1,6 @@
-using UnityEngine;
-
-public class DrugCreator: MonoBehaviour
+public class DrugCreator
 {
-    public Drug CreateDrug(string name, float strength, string ndc)
+    public Drug CreateDrug(string name, string strength, string ndc)
     {
         return new Drug(name, strength, ndc);
     }

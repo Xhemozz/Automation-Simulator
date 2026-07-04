@@ -8,22 +8,24 @@ public enum PrescriptionState
 }
 public class PrescriptionService
 {
-    private readonly PrescriptionQueue prescriptionQueue;
-
-    public PrescriptionService(PrescriptionQueue scriptQueue)
+    public PrescriptionState CreatePrescription(
+        string patient,
+        string drug,
+        string quantityText,
+        out Prescription prescription)
     {
-        prescriptionQueue = scriptQueue;
-    }
+        prescription = null;
 
-    public PrescriptionState CreatePrescription(string nameInput, string drugInput, string quantityInput)
-    {
-        if (string.IsNullOrWhiteSpace(nameInput)) return PrescriptionState.InvalidName;
-        if (string.IsNullOrWhiteSpace(drugInput)) return PrescriptionState.InvalidDrug;
-        if (!int.TryParse(quantityInput, out int quantity)) return PrescriptionState.InvalidQuantity;
+        if (string.IsNullOrWhiteSpace(patient))
+            return PrescriptionState.InvalidName;
 
-        Prescription prescription = new Prescription(nameInput, drugInput, quantity);
+        if (string.IsNullOrWhiteSpace(drug))
+            return PrescriptionState.InvalidDrug;
 
-        prescriptionQueue.AddPrescriptionToQueue(prescription);
+        if (!int.TryParse(quantityText, out int qty) || qty <= 0)
+            return PrescriptionState.InvalidQuantity;
+
+        prescription = new Prescription(patient, drug, qty);
 
         return PrescriptionState.Success;
     }

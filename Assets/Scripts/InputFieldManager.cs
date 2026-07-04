@@ -1,52 +1,66 @@
 using TMPro;
 using UnityEngine;
 
-/*
- * Handles user input from UI and uses that information to make the drug
- */
 public class InputFieldManager : MonoBehaviour
 {
+    [Header("Drug UI")]
     [SerializeField] private TMP_InputField nameInput;
     [SerializeField] private TMP_InputField strengthInput;
     [SerializeField] private TMP_InputField ndcInput;
 
-    [SerializeField] private TMP_InputField patientName;
-    [SerializeField] private TMP_InputField drugName;
-    [SerializeField] private TMP_InputField quantity;
+    [Header("Prescription UI")]
+    [SerializeField] private TMP_InputField patientInput;
+    [SerializeField] private TMP_InputField drugInput;
+    [SerializeField] private TMP_InputField quantityInput;
 
-    [SerializeField] private DrugRepositoryManager repositoryManager;
-    [SerializeField] private DrugCreator creator;
-
-    [SerializeField] private PrescriptionManager scriptService;
-
-    private DrugService drugService;
-    private PrescriptionService prescriptionService;
-
-    private PrescriptionState currentState;
-
-    private void Start()
+    public void OnSubmitDrug()
     {
-        if (repositoryManager.Repository == null) Debug.Log("Repo is Null");
-        Debug.Log("Repo USED (UI): " + repositoryManager.Repository.GetHashCode());
-        drugService = new DrugService(repositoryManager.Repository, creator);
+        bool success = GameBootstrapper.Instance.DrugService.CreateDrug(
+            nameInput.text,
+            strengthInput.text,
+            ndcInput.text
+        );
 
-        prescriptionService = new PrescriptionService(scriptService.queue);
+        Debug.Log(success ? "Drug created" : "Invalid drug input");
+
+        ClearDrugFields();
     }
 
-    public void OnSubmit()
+    public void OnSubmitPrescription()
     {
-        bool success = drugService.CreateDrug(nameInput.text, strengthInput.text, ndcInput.text);
+        Debug.Log(GameBootstrapper.Instance == null);
+        var service = GameBootstrapper.Instance.PrescriptionService;
+        var dispatcher = GameBootstrapper.Instance.GetComponent<PharmacyDispatcher>();
 
-        if (!success) Debug.LogWarning("Invalid Input");
-        else Debug.Log("Drug created successfully");
+        var result = service.CreatePrescription(
+            patientInput.text,
+            drugInput.text,
+            quantityInput.text,
+            out Prescription prescription
+        );
+
+        if (result != PrescriptionState.Success)
+        {
+            Debug.LogWarning(result);
+            return;
+        }
+
+        GameBootstrapper.Instance.Dispatcher.EnqueuePrescription(prescription);
+
+        ClearPrescriptionFields();
     }
 
-    public void SubmitPrescription()
+    private void ClearDrugFields()
     {
-        if (currentState == PrescriptionState.Success)
-            prescriptionService.CreatePrescription(
-            patientName.text, drugName.text, quantity.text);
-        else
-            Debug.Log("Prescription is invalid");
+        nameInput.text = "";
+        strengthInput.text = "";
+        ndcInput.text = "";
+    }
+
+    private void ClearPrescriptionFields()
+    {
+        patientInput.text = "";
+        drugInput.text = "";
+        quantityInput.text = "";
     }
 }

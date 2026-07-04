@@ -1,23 +1,27 @@
 using UnityEngine;
+
 public class DrugSpawner : MonoBehaviour
 {
-    private const string DrugPrefabPath = "Pill";
+    [SerializeField] private GameObject drugPrefab;
 
     public GameObject SpawnDrug(Drug drug, Transform spawnPoint)
     {
-        GameObject prefab = Resources.Load<GameObject>(DrugPrefabPath);
-
-        if (prefab == null)
+        if (drugPrefab == null)
         {
-            Debug.LogError($"Could not load prefab at Resources/{DrugPrefabPath}");
+            Debug.LogError("DrugSpawner: Prefab not assigned.");
             return null;
         }
 
-        GameObject obj = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
-        DrugComponent cmp = obj.GetComponent<DrugComponent>();
+        GameObject obj = Instantiate(
+            drugPrefab,
+            spawnPoint.position,
+            Quaternion.identity
+        );
 
-        if (cmp != null)
+        if (obj.TryGetComponent(out DrugComponent cmp))
+        {
             cmp.Init(drug);
+        }
 
         return obj;
     }
