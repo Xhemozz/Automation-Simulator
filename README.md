@@ -5,7 +5,7 @@ A Unity-based simulation system that models a pharmacy prescription workflow usi
 The project simulates drug storage, prescription queuing, and automated dispensing using a modular and extensible C# backend.
 
 ---
-[![Watch the demo](https://www.youtube.com/watch?v=gXx3rWaOFig)
+[Watch the demo video](https://www.youtube.com/watch?v=gXx3rWaOFig)
 ---
 
 ## 📌 Overview
