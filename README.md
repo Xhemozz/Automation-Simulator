@@ -11,7 +11,7 @@ The project simulates drug storage, prescription queuing, and automated dispensi
 This project simulates a simplified pharmacy automation system where:
 
 - 💊 Drugs are created and stored in a repository
-- 📝 Patients submit prescriptions into a processing queue
+- 📝 Pharmacy staff enter prescriptions into a processing queue
 - ⚙️ A central dispatcher processes prescriptions
 - 📦 Drugs are dispensed via a cassette-based system
 - 🖥️ A Unity UI layer allows interaction and input
@@ -100,12 +100,11 @@ DrugRepository
 
 # 🧪 Example Workflow
 
-1. User enters patient information.
-2. User selects medication and quantity.
-3. Prescription is validated.
-4. Prescription enters the processing queue.
-5. Dispatcher processes the next prescription.
-6. Cassette dispenses the requested quantity.
+1. Pharmacy staff enter the patient's prescription.
+2. Prescription details are validated.
+3. The prescription is added to the processing queue.
+4. The dispatcher processes queued prescriptions.
+5. The cassette system dispenses the requested quantity of medication.
 
 ---
 
@@ -248,19 +247,6 @@ Scripts/
 - No networking or multiplayer
 - Basic UI focused on functionality
 - Simplified queue processing logic
-
----
-
-# 🚀 Future Improvements
-
-- Save/load drug database
-- Inventory management
-- Prescription history
-- Multiple dispensing stations
-- ScriptableObject drug database
-- Unit testing
-- Event-driven architecture
-- Dependency injection framework (Zenject/Extenject)
 
 ---
 
