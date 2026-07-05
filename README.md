@@ -1,127 +1,206 @@
-💊 Pharmacy Automation Simulator (Unity + C#)
+# 💊 Pharmacy Automation Simulator (Unity + C#)
 
-A Unity-based simulation system that models a pharmacy prescription workflow using object-oriented design, service-layer architecture, and a centralized dispensing pipeline. The project simulates drug storage, prescription queuing, and automated dispensing using a modular and extensible C# backend.
+A Unity-based simulation system that models a pharmacy prescription workflow using object-oriented design, service-layer architecture, and a centralized dispensing pipeline.
 
-📌 Overview
+The project simulates drug storage, prescription queuing, and automated dispensing using a modular and extensible C# backend.
+
+---
+
+## 📌 Overview
 
 This project simulates a simplified pharmacy automation system where:
 
-Drugs are created and stored in a repository
-Patients submit prescriptions into a processing queue
-A central dispatcher processes prescriptions
-Drugs are dispensed via a cassette-based system
-A Unity UI layer allows interaction and input
+- 💊 Drugs are created and stored in a repository
+- 📝 Patients submit prescriptions into a processing queue
+- ⚙️ A central dispatcher processes prescriptions
+- 📦 Drugs are dispensed via a cassette-based system
+- 🖥️ A Unity UI layer allows interaction and input
 
-The system emphasizes clean architecture principles, separation of concerns, and dependency-driven design.
+The architecture emphasizes:
 
-🧠 Key Features
-🧾 Prescription System
-Patient prescriptions are validated and queued
-Input validation for patient name, drug name, and quantity
-Strongly typed prescription workflow
+- Clean Architecture
+- Separation of Concerns
+- Dependency Injection
+- Object-Oriented Design
+- Service-Layer Architecture
 
-💊 Drug Management
-Centralized drug repository
-Dynamic drug creation system
-Extensible drug data model
+---
 
-🤖 Automated Dispensing Pipeline
-Central dispatcher processes prescription queue
-Cassette system simulates physical dispensing hardware
-Quantity-based dispensing logic
+## ✨ Features
 
-🧩 Architecture
-Service-layer design (no logic in UI)
-Dependency injection via Bootstrapper
-Centralized system initialization
-Clear separation between Unity and pure C# logic
+### 🧾 Prescription System
 
-🏗️ Architecture Overview
-GameBootstrapper (System Core)
+- Prescription validation
+- Queue-based processing
+- Strongly typed prescription objects
+- Input validation for:
+  - Patient name
+  - Drug name
+  - Quantity
+
+### 💊 Drug Management
+
+- Centralized in-memory repository
+- Dynamic drug creation
+- Extensible drug model
+
+### 🤖 Automated Dispensing
+
+- Central dispatcher
+- Cassette-based dispensing simulation
+- Quantity-aware dispensing logic
+
+### 🧩 Architecture
+
+- Service-layer architecture
+- Manual dependency injection
+- Bootstrapper pattern
+- Pure C# business logic separated from Unity UI
+
+---
+
+# 🏗️ Architecture
+
+```text
+GameBootstrapper
 │
-├── DrugRepository (Data Layer)
-├── DrugService (Business Logic)
-├── PrescriptionService (Validation Logic)
-├── PharmacyDispatcher (Queue Processor)
+├── DrugRepository
+├── DrugService
+├── PrescriptionService
+├── PharmacyDispatcher
 │
-├── DrugCreator (Factory)
-└── Cassette / Spawner (Simulation Layer)
-      ↓
-   Unity UI Layer (Input & Display)
+├── DrugCreator
+└── Cassette / DrugSpawner
+      │
+      ▼
+Unity UI
+```
 
-⚙️ Technologies Used
-Unity Engine
-C#
-TMP (TextMeshPro UI)
-Object-Oriented Programming (OOP)
-Service Layer Architecture
+---
 
-🧱 Core Systems
-🧭 GameBootstrapper
+# 🔄 System Workflow
 
-Central initialization point for all systems. Ensures all dependencies are created in the correct order.
+```text
+User Input (Unity UI)
+        │
+        ▼
+PrescriptionService
+        │
+        ▼
+PharmacyDispatcher
+        │
+        ▼
+Cassette System
+        │
+        ▼
+DrugRepository
+```
 
-💊 DrugRepository
+---
 
-Stores and retrieves all drug data in memory.
+# 🧪 Example Workflow
 
-🧪 DrugService
+1. User enters patient information.
+2. User selects medication and quantity.
+3. Prescription is validated.
+4. Prescription enters the processing queue.
+5. Dispatcher processes the next prescription.
+6. Cassette dispenses the requested quantity.
 
-Handles drug creation and validation logic.
+---
 
-📦 PrescriptionService
+# ⚙️ Technologies
 
-Validates and constructs prescription objects.
+- Unity
+- C#
+- TextMeshPro (TMP)
+- Object-Oriented Programming (OOP)
+- Service Layer Architecture
 
-📋 PharmacyDispatcher
+---
 
-Manages prescription queue and triggers dispensing workflow.
+# 📦 Core Systems
 
-💉 Cassette System
+## 🧭 GameBootstrapper
 
-Simulates physical drug dispensing based on prescription quantity.
-Dependency Injection (manual via Bootstrapper)
+Initializes every system and wires dependencies together.
 
-🖥️ UI System
+---
 
-Built using Unity UI + TextMeshPro:
+## 💊 DrugRepository
 
-Drug creation form
-Prescription submission form
-Queue visualization (optional expansion point)
+Stores all drug data in memory.
 
-UI acts purely as an input/output layer and does not contain business logic.
+Responsibilities:
 
-User Input (UI)
-      ↓
-PrescriptionService (Validation)
-      ↓
-PharmacyDispatcher (Queue)
-      ↓
-Cassette System (Dispensing)
-      ↓
-DrugRepository (Data Source)
+- Add drugs
+- Retrieve drugs
+- Central data storage
 
-🧪 Example Flow
-User enters patient + medication details
-Prescription is validated
-Prescription is added to queue
-Dispatcher processes queue
-Cassette dispenses required quantity of medication
+---
 
-🧠 Design Principles Used
-Separation of Concerns
-Single Responsibility Principle (SRP)
-Dependency Injection (manual)
-Encapsulation of systems
-Centralized initialization (Bootstrapper pattern)
+## 🧪 DrugService
 
-🚧 Known Limitations
-No persistent database (in-memory only)
-No real-time multiplayer or networking
-UI is basic and functional rather than production-polished
-Dispatcher currently uses simplified queue processing
+Business logic responsible for:
 
+- Drug creation
+- Validation
+- Repository interaction
+
+---
+
+## 📋 PrescriptionService
+
+Responsible for:
+
+- Prescription validation
+- Building prescription objects
+- Input verification
+
+---
+
+## 📦 PharmacyDispatcher
+
+Handles:
+
+- Prescription queue
+- Processing workflow
+- Dispensing requests
+
+---
+
+## 💉 Cassette System
+
+Simulates automated medication dispensing.
+
+Features:
+
+- Quantity-based dispensing
+- Hardware simulation layer
+- Drug spawning
+
+---
+
+## 🖥️ Unity UI
+
+Built with:
+
+- Unity UI
+- TextMeshPro
+
+UI Responsibilities:
+
+- Drug creation form
+- Prescription submission
+- User interaction
+
+No business logic exists inside the UI layer.
+
+---
+
+# 📂 Project Structure
+
+```text
 Scripts/
 │
 ├── Bootstrap/
@@ -135,46 +214,56 @@ Scripts/
 ├── Data/
 │   └── DrugRepository.cs
 │
-├── Models/
-│   ├── Drug.cs
-│   └── Prescription.cs
-│
 ├── Factory/
 │   └── DrugCreator.cs
-│
-├── UI/
-│   └── InputFieldManager.cs
-│
-└── Simulation/
-    ├── Cassette.cs
-    └── DrugSpawner.cs
-
-    Scripts/
-│
-├── Bootstrap/
-│   └── GameBootstrapper.cs
-│
-├── Core/
-│   ├── DrugService.cs
-│   ├── PrescriptionService.cs
-│   └── PharmacyDispatcher.cs
-│
-├── Data/
-│   └── DrugRepository.cs
 │
 ├── Models/
 │   ├── Drug.cs
 │   └── Prescription.cs
 │
-├── Factory/
-│   └── DrugCreator.cs
+├── Simulation/
+│   ├── Cassette.cs
+│   └── DrugSpawner.cs
 │
-├── UI/
-│   └── InputFieldManager.cs
-│
-└── Simulation/
-    ├── Cassette.cs
-    └── DrugSpawner.cs
+└── UI/
+    └── InputFieldManager.cs
+```
 
-📜 License
-This project is for educational and portfolio purposes.
+---
+
+# 🧠 Design Principles
+
+- Separation of Concerns
+- Single Responsibility Principle (SRP)
+- Dependency Injection
+- Encapsulation
+- Bootstrapper Pattern
+- Modular Service Layer
+
+---
+
+# 🚧 Current Limitations
+
+- In-memory data only (no persistence)
+- No networking or multiplayer
+- Basic UI focused on functionality
+- Simplified queue processing logic
+
+---
+
+# 🚀 Future Improvements
+
+- Save/load drug database
+- Inventory management
+- Prescription history
+- Multiple dispensing stations
+- ScriptableObject drug database
+- Unit testing
+- Event-driven architecture
+- Dependency injection framework (Zenject/Extenject)
+
+---
+
+# 📜 License
+
+This project was created for educational and portfolio purposes.
